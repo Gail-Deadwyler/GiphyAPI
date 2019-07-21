@@ -1,8 +1,31 @@
 $(document).ready(function(){
-    
+
     // Starter array of supers
     var topics = ["wonder woman", "superman", "captain america", "iron man"];
-    //supers
+
+    // this function re-renders the HTML to display the appropriate content
+    function displaySuperInfo() {
+
+        var MySuperHeros = $(this).attr("data-name");
+
+        var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
+        MySuperHeros + "&api_key=BkaUZZWcFij6J7AoQj3WtPb1R2p9O6V9&limit=10&rating=g";
+
+    // Creating an AJAX call for the specific super hero button being clicked
+        $.ajax({
+            url: queryURL,
+            method: "GET"
+        }).then(function(response) {
+
+            console.log(response);
+
+        });
+
+
+
+
+
+    }
 
     // Displays super information
     function renderButtons() {
@@ -46,6 +69,9 @@ $(document).ready(function(){
         // call renderButtons to handle the processing of the superhero array
         renderButtons();
     });
+
+    // Add a click event listener to all buttons with a class of "super"
+    $(document).on("click", ".super", displaySuperInfo);
 
     // Call the renderButtons function at least once to display the initial list of supers
     renderButtons();
