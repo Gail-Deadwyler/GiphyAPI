@@ -31,3 +31,15 @@ header {
     margin: 0 auto;
     padding: 10px;
 }
+
+#supers-form {
+    /* margin-left: 50%; */
+    position: relative;
+    left: 50%;
+}
+
+#super_giphys {
+    display: inline;
+}
+
+

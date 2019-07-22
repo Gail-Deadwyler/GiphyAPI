@@ -1,11 +1,14 @@
 // when HTML page loads, start this script
-// $(document).ready(function(){
+$(document).ready(function(){
 
     // Starter array of supers
     var topics = ["wonder woman", "superman", "captain america", "iron man"];
 
     // this function re-renders the HTML to display the appropriate content
     function displaySuperInfo() {
+
+        // Empty the contents of my placeholder on the index page (div with id of super_giphys)
+        $("#super_giphys").empty();
 
         var MySuperHeros = $(this).attr("data-name");
 
@@ -40,12 +43,21 @@
             // create a div here
             var myDiv = $("<div>");
 
+            // put ratings from loop into var rating
+            var rating = myResults[i].rating;
+            console.log(rating);            
+
+            
+            // var h3 = $("<h3>").text("Rating: " + myResults[i].rating);
+
             // create a h3 tag that holds the rating
-            var h3 = $("<h3>").text("Rating: " + myResults[i].rating);
-            console.log("h3 is " + typeof h3);
-            console.log(typeof myResults[i].rating)
-            console.log("Each cycle of Ratings loop: " + myResults[i].rating);
-            console.log("h3 - each loop cycle is " + h3);
+            var h3 = $("<h3>").text("Rating: " + rating);
+
+
+            // console.log("h3 is " + typeof h3);
+            // console.log(typeof myResults[i].rating)
+            // console.log("Each cycle of Ratings loop: " + rating);
+            // console.log("h3 - each loop cycle is " + h3);
 
             // create a img tag here
             var myImg = $("<img>");
@@ -67,13 +79,11 @@
             // add gif class
             myImg.attr("class", "gif");
 
-            console.log("img result is" + myResults[i].images.fixed_height_still.url);
-
-            // Empty the contents of my placeholder on the index page (div with id of super_giphys)
-            $("#super_giphys").empty();
+            console.log("img result is" + myResults[i].images.fixed_height_still.url);            
+            
 
             // append h3 and img tags to myDiv
-            myDiv.append(h3, myImg);
+            myDiv.append(h3,myImg);
 
             //append myDiv to my placeholder on the index page (div with id super_giphys)
             $("#super_giphys").append(myDiv);
@@ -96,13 +106,12 @@
                   $(this).attr("src", $(this).attr("data-still"));
                   $(this).attr("data-state", "still");
                 }
-              });
-
-            
+              });          
            
 
             // end for loop
             } 
+            
 
         });
 
@@ -158,12 +167,13 @@
     // Add a click event listener to all buttons with a class of "super"
     $(document).on("click", ".super", displaySuperInfo);
 
-    
+     // Empty the contents of my placeholder on the index page (div with id of super_giphys)
+    // $("#super_giphys").empty();
 
     // Call the renderButtons function at least once to display the initial list of supers
     renderButtons();
 
 
 // end of entire script
-// });
+});
 
