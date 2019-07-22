@@ -51,27 +51,55 @@
             var myImg = $("<img>");
 
             // Setting the src attribute of the img to a property pulled off the result item
-            myImg.attr("src", myResults[i].images.fixed_height_small_still.url);
 
-            console.log("img result is" + myResults[i].images.fixed_height_small_still.url);
+            // animated giphy
+            myImg.attr("data-animate", myResults[i].images.fixed_height.url);
+
+            //non-animated giphy
+            myImg.attr("src", myResults[i].images.fixed_height_still.url);
+
+            // set data-still attribute
+            myImg.attr("data-still", myResults[i].images.fixed_height_still.url);
+
+            //set data-state to still
+            myImg.attr("data-state", "still");
+
+            // add gif class
+            myImg.attr("class", "gif");
+
+            console.log("img result is" + myResults[i].images.fixed_height_still.url);
 
             // Empty the contents of my placeholder on the index page (div with id of super_giphys)
             $("#super_giphys").empty();
 
             // append h3 and img tags to myDiv
-            myDiv.append(h3, myImg)
+            myDiv.append(h3, myImg);
 
             //append myDiv to my placeholder on the index page (div with id super_giphys)
-            $("#super_giphys").append(myDiv)
+            $("#super_giphys").append(myDiv);
+
+            // Pausing animation here         
+            $(".gif").on("click", function() {                
+                
+                var state = $(this).attr("data-state");          
+               
+                // If the clicked image's state is still, update its src attribute to what its data-animate value is.
+                // Then, set the image's data-state to animate
+                // Else set src to the data-still value
+                if (state === "still") {
+        
+                  $(this).attr("src", $(this).attr("data-animate"));
+                  $(this).attr("data-state", "animate");
+                } 
+                
+                else {
+                  $(this).attr("src", $(this).attr("data-still"));
+                  $(this).attr("data-state", "still");
+                }
+              });
 
             
-            // $("#buttons-view").append(h3);
-            // $("#buttons-view").append(myImg);
-
-
-            // append the h3 and ime tag to the myDiv
-            // myDiv.append(h3);
-            // myDiv.append(myImg);
+           
 
             // end for loop
             } 
@@ -129,6 +157,8 @@
 
     // Add a click event listener to all buttons with a class of "super"
     $(document).on("click", ".super", displaySuperInfo);
+
+    
 
     // Call the renderButtons function at least once to display the initial list of supers
     renderButtons();
