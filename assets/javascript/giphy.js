@@ -86,7 +86,10 @@ $(document).ready(function(){
             myDiv.append(h3,myImg);
 
             //append myDiv to my placeholder on the index page (div with id super_giphys)
-            $("#super_giphys").append(myDiv);
+            $("#super_giphys").append(myDiv);                  
+
+            // end for loop
+            } 
 
             // Pausing animation here         
             $(".gif").on("click", function() {                
@@ -106,13 +109,9 @@ $(document).ready(function(){
                   $(this).attr("src", $(this).attr("data-still"));
                   $(this).attr("data-state", "still");
                 }
-              });          
-           
-
-            // end for loop
-            } 
+              });     
             
-
+        // function(response) end
         });
 
     // end displaySuperInfo()
