@@ -34,8 +34,10 @@ header {
 
 #supers-form {
     /* margin-left: 50%; */
-    position: relative;
-    left: 50%;
+    /* position: relative; */
+    /* left: 50%; */
+    float: right;
+    /* position: fixed; */
 }
 
 #super_giphys {
